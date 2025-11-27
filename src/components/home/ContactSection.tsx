@@ -77,9 +77,9 @@ export function ContactSection() {
                 <div>
                   <h3 className="font-headline font-semibold mb-2 text-foreground">Address</h3>
                   <p className="text-muted-foreground">
-                    123 Business Street, Suite 100
+                    3rd Floor, JK Tower, Kottankavu Jn, Vennala PO
                     <br />
-                    New York, NY 10001
+                    Ernakulam 682028
                   </p>
                 </div>
               </div>
@@ -92,7 +92,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-headline font-semibold mb-2 text-foreground">PhoneIcon</h3>
-                  <p className="text-muted-foreground">(555) 123-4567</p>
+                  <p className="text-muted-foreground">+91 8089732244</p>
                 </div>
               </div>
             </Card>
@@ -104,7 +104,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-headline font-semibold mb-2 text-foreground">Email</h3>
-                  <p className="text-muted-foreground">info@astutosolutions.com</p>
+                  <p className="text-muted-foreground">ask@astutosolution.com</p>
                 </div>
               </div>
             </Card>

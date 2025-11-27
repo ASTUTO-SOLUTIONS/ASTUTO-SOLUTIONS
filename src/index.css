@@ -51,6 +51,59 @@
 }
 
 @layer utilities {
+
+  /* ==========================
+     MARQUEE ANIMATION
+     ==========================*/
+
+  /* Rotating Fade Text */
+@keyframes fadeRotate {
+  0%, 20% { opacity: 1; transform: translateY(0); }
+  25%, 45% { opacity: 0; transform: translateY(-10px); }
+  50%, 70% { opacity: 1; transform: translateY(0); }
+  75%, 100% { opacity: 0; transform: translateY(10px); }
+}
+
+.rotate-fade-text span {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  animation: fadeRotate 6s infinite ease-in-out;
+}
+
+.rotate-fade-text span:nth-child(1) {
+  animation-delay: 0s;
+}
+.rotate-fade-text span:nth-child(2) {
+  animation-delay: 3s;
+}
+
+.typewriter-text {
+  border-right: 2px solid white;
+  padding-right: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+  0% { border-color: transparent; }
+  50% { border-color: white; }
+  100% { border-color: transparent; }
+}
+
+   
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .animate-marquee {
+    display: inline-block;
+    animation: marquee 12s linear infinite;
+  }
+
   .text-balance {
     text-wrap: balance;
   }
