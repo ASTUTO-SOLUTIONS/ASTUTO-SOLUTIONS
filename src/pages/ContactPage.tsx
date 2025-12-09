@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Map } from "@/components/Map";
+
 import {
   MapPinIcon,
   PhoneIcon,
@@ -194,7 +196,7 @@ export function ContactPage() {
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder="(555) 123-4567"
+                      placeholder="+91 XXXXX XXXXX"
                       className="bg-white text-gray-900"
                     />
                   </div>
@@ -298,72 +300,107 @@ export function ContactPage() {
         </div>
       </section>
 
-      {/* Office Locations */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-8 lg:px-16">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-800 px-4 py-2 rounded-full mb-4">
-              <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-              <span className="text-sm font-medium">OUR OFFICES</span>
-            </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Visit our offices
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              We have offices in major cities around the world to serve you better
-            </p>
+
+
+{/* Office Location */}
+<section className="py-16 lg:py-24 bg-white">
+  <div className="max-w-7xl mx-auto px-8 lg:px-16">
+
+    <div className="text-center mb-12">
+      <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-800 px-4 py-2 rounded-full mb-4">
+        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+        <span className="text-sm font-medium">OUR OFFICE</span>
+      </div>
+
+      <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+        Visit Our Office
+      </h2>
+      <p className="text-gray-600 max-w-2xl mx-auto">
+        Feel free to visit us at our Kochi office. We’re here to assist you.
+      </p>
+    </div>
+
+    {/* Office Card */}
+    <Card className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white max-w-xl mx-auto">
+      <div className="relative h-56 overflow-hidden">
+        <img
+          src="/static/kochi.png"
+          alt="Kochi"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      <div className="p-6">
+        <h3 className="font-bold text-2xl mb-3 text-gray-900">Kochi</h3>
+
+        <div className="space-y-3">
+          <div className="flex items-start gap-2 text-gray-600">
+            <MapPinIcon size={18} className="mt-1 flex-shrink-0" />
+            <span className="text-sm">
+              ASTUTO SOLUTION LLP, 3rd Floor, JK Tower, Kottankavu Jn, PO, 
+              Vennala, Kochi, Kerala 682028
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {offices.map((office, index) => (
-              <Card
-                key={index}
-                className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={office.image}
-                    alt={office.city}
-                    width={400}
-                    height={300}
-                    loading="lazy"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="font-bold text-xl mb-3 text-gray-900">
-                    {office.city}
-                  </h3>
-                  <div className="space-y-2">
-                    <div className="flex items-start gap-2 text-gray-600">
-                      <MapPinIcon size={18} className="mt-1 flex-shrink-0" />
-                      <span className="text-sm">{office.address}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <PhoneIcon size={18} className="flex-shrink-0" />
-                      <span className="text-sm">{office.phone}</span>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            ))}
+          <div className="flex items-center gap-2 text-gray-600">
+            <PhoneIcon size={18} className="flex-shrink-0" />
+            <span className="text-sm">+91 80897 32244</span>
           </div>
-        </div>
-      </section>
 
-      {/* Map Section */}
-      <section className="py-16 lg:py-24 bg-purple-50">
-        <div className="max-w-7xl mx-auto px-8 lg:px-16">
-          <Card className="overflow-hidden border-none shadow-lg">
-            <div className="h-96 bg-gray-200 flex items-center justify-center">
-              <div className="text-center">
-                <MapPinIcon size={48} className="mx-auto mb-4 text-gray-400" />
-                <p className="text-gray-600">Interactive map would be displayed here</p>
-              </div>
-            </div>
-          </Card>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=ASTUTO+SOLUTION+LLP,+3rd+Floor,+JK+Tower,+Kottankavu+Jn,+PO,+Vennala,+Kochi,+Kerala+682028"
+            target="_blank"
+            className="inline-block mt-4 bg-purple-900 hover:bg-purple-800 text-white px-6 py-2 rounded-lg transition-all shadow-md"
+          >
+            Open in Google Maps
+          </a>
         </div>
-      </section>
+      </div>
+    </Card>
+
+  </div>
+</section>
+
+
+<section className="py-16 lg:py-24 bg-purple-50">
+  <div className="max-w-7xl mx-auto px-8 lg:px-16">
+    <Card className="overflow-hidden border-none shadow-lg relative">
+
+      {/* Parent is relative so overlay can capture clicks */}
+      <div className="h-96 relative rounded-xl overflow-hidden">
+
+        {/* Correct ASTUTO SOLUTION LLP Google Maps embed */}
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4256.733527947175!2d76.31857357537963!3d9.992680790112345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x24d1f388247946b9%3A0x6159e73973652d66!2sASTUTO%20SOLUTION%20LLP!5e1!3m2!1sen!2sin!4v1765263095877!5m2!1sen!2sin"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="w-full h-full rounded-xl"
+        ></iframe>
+
+        {/* Transparent overlay that opens full Google Maps on click */}
+        <a
+          href="https://maps.app.goo.gl/wEJ1bpZrPbaZpGhCA"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute inset-0 z-20"
+          aria-label="Open ASTUTO SOLUTION LLP in Google Maps"
+        />
+      </div>
+
+    </Card>
+  </div>
+</section>
+
+
+
+
+
+
+
     </main>
   );
 }
