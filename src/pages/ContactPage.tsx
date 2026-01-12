@@ -20,9 +20,36 @@ export function ContactPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
+// Contact Form   
+
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  const form = e.currentTarget;
+
+  try {
+    const res = await fetch('/api/send-mail', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        formType: 'contact',
+        name: `${(form as any).firstName?.value ?? ''} ${(form as any).lastName?.value ?? ''}`.trim(),
+        email: (form as any).email.value,
+        phone: (form as any).phone?.value,
+        subject: (form as any).subject?.value ?? 'Contact Form Message',
+        message: (form as any).message.value,
+      }),
+    });
+
+    if (!res.ok) throw new Error('Failed');
+
+    alert('Message sent successfully!');
+    form.reset();
+  } catch (error) {
+    alert('Something went wrong. Please try again.');
+  }
+};
+
 
   const contactInfo = [
     {
@@ -34,19 +61,19 @@ export function ContactPage() {
     {
       icon: <PhoneIcon size={28} />,
       title: 'Call Us',
-      details: ['Main: +91 8089732244', 'Toll Free: 1-800-123-4567', 'Fax: (555) 123-4568'],
+      details: ['Main: +91 8089732244'],
       color: 'bg-blue-100 text-blue-900',
     },
     {
       icon: <MailIcon size={28} />,
       title: 'Email Us',
-      details: ['ask@astutosolution.com', 'support@astutosolutions.com', 'careers@astutosolutions.com'],
+      details: ['ask@astutosolution.com'],
       color: 'bg-green-100 text-green-900',
     },
     {
       icon: <ClockIcon size={28} />,
       title: 'Business Hours',
-      details: ['Monday - Friday: 9:00 AM - 6:00 PM', 'Saturday: 10:00 AM - 4:00 PM', 'Sunday: Closed'],
+      details: ['Monday - Saturday: 9 AM - 5 PM', 'Sunday: Closed'],
       color: 'bg-amber-100 text-amber-900',
     },
   ];
@@ -75,7 +102,8 @@ export function ContactPage() {
   return (
     <main>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-900 to-purple-700 min-h-[500px] flex items-center pt-20">
+      <section className="bg-gradient-to-r from-purple-900 to-purple-700 min-h-[650px] lg:min-h-[750px]
+ flex items-center pt-20">
         <div className="max-w-7xl mx-auto px-8 lg:px-16 py-16 lg:py-24 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-white">
@@ -107,7 +135,7 @@ export function ContactPage() {
 {/* Contact Info Cards */}
 <section className="py-16 lg:py-24 bg-white">
   <div className="max-w-7xl mx-auto px-8 lg:px-16">
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
 
       {contactInfo.map((info, index) => {
         // Determine card click action
@@ -130,9 +158,10 @@ export function ContactPage() {
             {...(cardLink
               ? { href: cardLink, target: "_blank", rel: "noopener noreferrer" }
               : {})}
-            className="block"
+            className="block h-full"
+
           >
-            <Card className="p-6 bg-white border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+            <Card className="p-6 bg-white border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full flex flex-col">
 
               <div className={`${info.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-4`}>
                 {info.icon}
@@ -448,7 +477,7 @@ export function ContactPage() {
 
         {/* Correct ASTUTO SOLUTION LLP Google Maps embed */}
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4256.733527947175!2d76.31857357537963!3d9.992680790112345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x24d1f388247946b9%3A0x6159e73973652d66!2sASTUTO%20SOLUTION%20LLP!5e1!3m2!1sen!2sin!4v1765263095877!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4256.733527947175!2d76.31857357537963!3d9.992680790112345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x24d1f388247946b9%3A0x6159e73973652d66!2sASTUTO%20SOLUTION%20LLP!5e0!3m2!1sen!2sin!4v1765263095877!5m2!1sen!2sin"
           width="100%"
           height="100%"
           style={{ border: 0 }}

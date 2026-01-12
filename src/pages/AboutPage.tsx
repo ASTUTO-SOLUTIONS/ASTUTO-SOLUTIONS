@@ -1,6 +1,13 @@
 import { useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { CheckCircle2Icon, UsersIcon, TrendingUpIcon, AwardIcon, HeartIcon } from 'lucide-react';
+import azharImg from "../assets/azhar.jpg";
+import nidalImg from "../assets/nidal.jpg";
+import safwanImg from "../assets/safwan.jpg";
+import salahImg from "../assets/salah.jpg";
+
+
+
 
 export function AboutPage() {
   useEffect(() => {
@@ -47,37 +54,44 @@ export function AboutPage() {
     },
   ];
 
-  const team = [
-    {
-      name: 'Sarah Mitchell',
-      role: 'CEO & Founder',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop',
-      bio: 'Visionary leader with 20+ years in financial consulting',
-    },
-    {
-      name: 'David Chen',
-      role: 'Chief Financial Officer',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop',
-      bio: 'Expert in corporate finance and strategic planning',
-    },
-    {
-      name: 'Emily Rodriguez',
-      role: 'Head of Operations',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop',
-      bio: 'Specialist in operational excellence and efficiency',
-    },
-    {
-      name: 'Michael Thompson',
-      role: 'Senior Consultant',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
-      bio: 'Strategic advisor with deep industry expertise',
-    },
-  ];
+const team = [
+  {
+    name: 'CA Azhar Naseef',
+    role: 'Chartered Accountant',
+    imagePosition: 'object-[50%_60%]',
+    image: azharImg,
+    bio: 'Chartered Accountant with Big 4 experience specializing in audit, compliance, and strategic financial advisory.',
+  },
+  {
+    name: 'CA Muhammed Safwan M P',
+    role: 'Financial Auditor & Faculty',
+    
+    imagePosition: 'object-[50%_15%]', 
+    image: safwanImg,
+    bio: 'Financial Auditor | Faculty for CA, ACCA, CMA | Expert in Financial Reporting, Taxation and Audit with more than 4 years of experience.',
+  },
+  {
+    name: 'Salah Saman KP',
+    role: 'Law & Audit Faculty',
+    image: salahImg,
+    bio: 'An experienced Law & Audit faculty with around 6 years of expertise in corporate laws, secretarial practice, and compliance management within the Company Secretary domain.',
+  },
+  {
+    name: 'Ahammed Nidal TK',
+    role: 'Cost & Management Accounting Expert',
+    imagePosition: 'object-[50%_1%]',
+    image: nidalImg,
+    bio: 'An expert in Cost & Management Accounting and Financial Management, with over 7 years of experience in taxation, audit, accounts, and regulatory compliances.',
+  },
+];
+
+
 
   return (
     <main>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-900 to-purple-700 min-h-[500px] flex items-center pt-20">
+      <section className="bg-gradient-to-r from-purple-900 to-purple-700 min-h-[650px] lg:min-h-[750px]
+ flex items-center pt-20">
         <div className="max-w-7xl mx-auto px-8 lg:px-16 py-16 lg:py-24 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-white">
@@ -273,7 +287,9 @@ export function AboutPage() {
                     width={400}
                     height={400}
                     loading="lazy"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    className={`w-full h-full object-cover ${member.imagePosition ?? 'object-center'} hover:scale-105 transition-transform duration-300`}
+
+
                   />
                 </div>
                 <div className="p-6">

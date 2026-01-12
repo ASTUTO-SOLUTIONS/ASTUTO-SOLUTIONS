@@ -1,26 +1,40 @@
 import { Card } from '@/components/ui/card';
+import azharImg from "../../assets/azhar.jpg";
+import nidalImg from "../../assets/nidal.jpg";
+import safwanImg from "../../assets/safwan.jpg";
+import salahImg from "../../assets/salah.jpg";
 
 export function ExpertInsights() {
-  const experts = [
-    {
-      name: 'Tom White',
-      role: 'Senior Financial Consultant',
-      bio: 'Expert in financial planning with over 15 years of experience helping startups grow.',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop',
-    },
-    {
-      name: 'Mark Taylor',
-      role: 'Tax Strategy Expert',
-      bio: 'Specializes in tax optimization and compliance for growing businesses.',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
-    },
-    {
-      name: 'Emma Wilson',
-      role: 'Business Operations Specialist',
-      bio: 'Passionate about streamlining operations and improving business efficiency.',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop',
-    },
-  ];
+const experts = [
+  {
+    name: 'CA Azhar Naseef',
+    role: 'Chartered Accountant',
+    imagePosition: 'object-[50%_60%]',
+    image: azharImg,
+    bio: 'Chartered Accountant with Big 4 experience specializing in audit, compliance, and strategic financial advisory.',
+  },
+  {
+    name: 'CA Muhammed Safwan M P',
+    role: 'Financial Auditor & Faculty',
+    
+    imagePosition: 'object-[50%_15%]', 
+    image: safwanImg,
+    bio: 'Financial Auditor | Faculty for CA, ACCA, CMA | Expert in Financial Reporting, Taxation and Audit with more than 4 years of experience.',
+  },
+  {
+    name: 'Salah Saman KP',
+    role: 'Law & Audit Faculty',
+    image: salahImg,
+    bio: 'An experienced Law & Audit faculty with around 6 years of expertise in corporate laws, secretarial practice, and compliance management within the Company Secretary domain.',
+  },
+  {
+    name: 'Ahammed Nidal TK',
+    role: 'Cost & Management Accounting Expert',
+    imagePosition: 'object-[50%_1%]',
+    image: nidalImg,
+    bio: 'An expert in Cost & Management Accounting and Financial Management, with over 7 years of experience in taxation, audit, accounts, and regulatory compliances.',
+  },
+];
 
   return (
     <section className="py-16 lg:py-24 bg-white">
@@ -35,7 +49,7 @@ export function ExpertInsights() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {experts.map((expert, index) => (
             <Card
               key={index}
@@ -48,7 +62,8 @@ export function ExpertInsights() {
                   width={400}
                   height={400}
                   loading="lazy"
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full object-cover ${expert.imagePosition ?? 'object-center'}`}
+
                 />
               </div>
               <div className="p-6">

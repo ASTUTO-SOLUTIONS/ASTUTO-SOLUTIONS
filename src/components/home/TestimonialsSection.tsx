@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon, StarIcon } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -8,34 +8,49 @@ export function TestimonialsSection() {
 
   const testimonials = [
     {
-      name: 'Sarah Johnson',
-      role: 'CEO, TechStart Inc.',
+      name: 'Rajesh M.',
+      role: 'Managing Director, IT Services Company',
       rating: 5,
-      text: 'Astuto Solutions transformed our financial operations. Their expertise and dedication helped us scale efficiently and make better strategic decisions. Highly recommended!',
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
+      text: 'Astuto Solutions has been a reliable financial partner for our organization. Their guidance on compliance and financial structuring helped us streamline operations and plan growth confidently.',
+      avatar: 'https://images.unsplash.com/photo-1557862921-37829c790f19?w=100&h=100&fit=crop',
     },
     {
-      name: 'Michael Chen',
-      role: 'Founder, GrowthLabs',
+      name: 'Anita N.',
+      role: 'Founder, Startup Business',
       rating: 5,
-      text: 'The team at Astuto Solutions is exceptional. They provided invaluable insights that helped us optimize our workforce and improve our bottom line significantly.',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
+      text: 'The team at Astuto Solutions provided clear and practical advice on taxation and financial planning. Their professional approach allowed us to stay compliant while focusing on scaling our business.',
+      avatar: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=100&h=100&fit=crop',
     },
     {
-      name: 'Emily Rodriguez',
-      role: 'CFO, InnovateCo',
+      name: 'Suresh K.',
+      role: 'Director, Manufacturing Firm',
       rating: 5,
-      text: 'Working with Astuto Solutions has been a game-changer. Their strategic approach and attention to detail have been instrumental in our continued success and growth.',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop',
+      text: 'Astuto Solutions stands out for their responsiveness and depth of knowledge. Their audit and advisory support added significant value to our financial decision-making.',
+      avatar: 'https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=100&h=100&fit=crop',
     },
   ];
 
+  /* ✅ AUTO SLIDE EFFECT */
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) =>
+        prev === testimonials.length - 1 ? 0 : prev + 1
+      );
+    }, 4000); // 4 seconds
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
   const handlePrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+    setCurrentIndex((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) =>
+      prev === testimonials.length - 1 ? 0 : prev + 1
+    );
   };
 
   return (
@@ -46,7 +61,9 @@ export function TestimonialsSection() {
             <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
             <span className="text-sm font-medium">TESTIMONIALS</span>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">Reviews</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+            Reviews
+          </h2>
         </div>
 
         <div className="relative">
@@ -71,14 +88,22 @@ export function TestimonialsSection() {
                         <h3 className="font-bold text-lg text-gray-900">
                           {testimonial.name}
                         </h3>
-                        <p className="text-gray-600 text-sm">{testimonial.role}</p>
+                        <p className="text-gray-600 text-sm">
+                          {testimonial.role}
+                        </p>
                       </div>
                     </div>
+
                     <div className="flex gap-1 mb-4">
                       {Array.from({ length: testimonial.rating }).map((_, i) => (
-                        <StarIcon key={i} size={20} className="fill-amber-400 text-amber-400" />
+                        <StarIcon
+                          key={i}
+                          size={20}
+                          className="fill-amber-400 text-amber-400"
+                        />
                       ))}
                     </div>
+
                     <p className="text-base lg:text-lg text-gray-700 leading-relaxed">
                       "{testimonial.text}"
                     </p>
@@ -88,19 +113,23 @@ export function TestimonialsSection() {
             </div>
           </div>
 
+          {/* DOTS */}
           <div className="flex justify-center gap-2 mt-8">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-colors ${
-                  currentIndex === index ? 'bg-purple-900' : 'bg-gray-300'
+                  currentIndex === index
+                    ? 'bg-purple-900'
+                    : 'bg-gray-300'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>
 
+          {/* ARROWS */}
           <div className="flex justify-center gap-4 mt-6">
             <Button
               onClick={handlePrevious}
@@ -111,6 +140,7 @@ export function TestimonialsSection() {
             >
               <ChevronLeftIcon size={24} />
             </Button>
+
             <Button
               onClick={handleNext}
               variant="outline"

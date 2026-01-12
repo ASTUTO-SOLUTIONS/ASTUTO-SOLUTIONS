@@ -4,9 +4,33 @@ import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 
 export function ContactSection() {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
+  // Form
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  const form = e.currentTarget;
+
+  try {
+    const res = await fetch('/api/send-mail', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        formType: 'home',
+        name: (form as any).name.value,
+        email: (form as any).email.value,
+        message: (form as any).message.value,
+      }),
+    });
+
+    if (!res.ok) throw new Error('Failed');
+
+    alert('Message sent successfully!');
+    form.reset();
+  } catch (error) {
+    alert('Something went wrong. Please try again.');
+  }
+};
+
 
   return (
     <section id="contact" className="py-16 lg:py-24 bg-secondary">
@@ -91,7 +115,7 @@ export function ContactSection() {
                   <PhoneIcon size={24} className="text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-headline font-semibold mb-2 text-foreground">PhoneIcon</h3>
+                  <h3 className="font-headline font-semibold mb-2 text-foreground">Phone</h3>
                   <p className="text-muted-foreground">+91 8089732244</p>
                 </div>
               </div>
