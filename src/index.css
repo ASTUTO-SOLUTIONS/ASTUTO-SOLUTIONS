@@ -200,8 +200,8 @@ html {
 }
 @font-face {
   font-family: 'Conthrax';
-  src: url('/static/fonts/Conthrax-SemiBold.woff2') format('woff2'),
-       url('/static/fonts/Conthrax-SemiBold.woff2') format('woff');
+  src: url('/public/fonts/Conthrax-SemiBold.woff2') format('woff2'),
+       url('/public/fonts/Conthrax-SemiBold.woff2') format('woff');
   font-weight: normal;
   font-style: normal;
 }

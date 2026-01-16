@@ -52,7 +52,7 @@ export function Navbar() {
 <Link to="/" className="flex items-center group" onClick={handleNavClick}>
   <div className="flex items-center gap-2">
     <img 
-      src="/logo.png" 
+      src="public/logo.png" 
       alt="Astuto Solutions Logo" 
       className="h-9 sm:h-10 lg:h-12 w-auto object-contain group-hover:scale-105 transition-all duration-300"
     />
