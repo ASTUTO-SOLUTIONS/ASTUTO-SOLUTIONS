@@ -1,18 +1,15 @@
+import { Handler } from '@netlify/functions';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY!);
 
-export default async function handler(req: Request): Promise<Response> {
-  // Allow only POST
-  if (req.method !== 'POST') {
-    return new Response(
-      JSON.stringify({ error: 'Method not allowed' }),
-      { status: 405 }
-    );
+export const handler: Handler = async (event) => {
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
   try {
-    const body = await req.json();
+    const body = JSON.parse(event.body || '{}');
 
     const {
       formType = 'contact',
@@ -24,13 +21,13 @@ export default async function handler(req: Request): Promise<Response> {
     } = body;
 
     if (!name || !email || !message) {
-      return new Response(
-        JSON.stringify({ error: 'Missing required fields' }),
-        { status: 400 }
-      );
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'Missing required fields' }),
+      };
     }
 
-    // Send email to Astuto
+    // Email to Astuto
     await resend.emails.send({
       from: 'Astuto Website <no-reply@astutosolution.com>',
       to: ['ask@astutosolution.com'],
@@ -48,7 +45,7 @@ export default async function handler(req: Request): Promise<Response> {
       `,
     });
 
-    // Auto-reply to user
+    // Auto-reply
     await resend.emails.send({
       from: 'Astuto Solutions <no-reply@astutosolution.com>',
       to: email,
@@ -62,15 +59,15 @@ export default async function handler(req: Request): Promise<Response> {
       `,
     });
 
-    return new Response(
-      JSON.stringify({ success: true }),
-      { status: 200 }
-    );
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ success: true }),
+    };
   } catch (error) {
-    console.error('Email error:', error);
-    return new Response(
-      JSON.stringify({ error: 'Failed to send email' }),
-      { status: 500 }
-    );
+    console.error(error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Failed to send email' }),
+    };
   }
-}
+};

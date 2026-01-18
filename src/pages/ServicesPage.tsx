@@ -102,7 +102,8 @@ export function ServicesPage() {
     <main className="parallax-container">
       <ParallaxSection index={0} speed={0.2}>
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-purple-900 to-purple-700 min-h-[500px] flex items-center pt-0 lg:pt-20">
+        <section className="bg-gradient-to-r from-purple-900 to-purple-700 min-h-[500px] flex items-center pt-20 lg:pt-20">
+
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-8 lg:py-24 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div className="text-white">

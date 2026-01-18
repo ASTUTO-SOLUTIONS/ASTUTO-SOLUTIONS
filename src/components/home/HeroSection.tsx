@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 export function HeroSection() {
   return (
-    <section className="bg-gradient-to-r from-purple-900 to-purple-700 min-h-[600px] lg:min-h-[700px] pt-0 lg:pt-16">
+    <section className="bg-gradient-to-r from-purple-900 to-purple-700 min-h-[600px] lg:min-h-[700px] flex lg:block pt-20 lg:pt-16">
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-8 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Image */}
