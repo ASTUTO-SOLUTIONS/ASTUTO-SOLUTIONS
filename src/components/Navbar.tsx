@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import logo from '@/assets/logo.png';
+
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -51,11 +53,12 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20">
 <Link to="/" className="flex items-center group" onClick={handleNavClick}>
   <div className="flex items-center gap-2">
-    <img 
-      src="public/logo.png" 
-      alt="Astuto Solutions Logo" 
-      className="h-9 sm:h-10 lg:h-12 w-auto object-contain group-hover:scale-105 transition-all duration-300"
-    />
+   <img
+  src={logo}             // ✅ USE THE IMPORT
+  alt="Astuto Solutions Logo"
+  className="h-9 sm:h-10 lg:h-12 w-auto object-contain group-hover:scale-105 transition-all duration-300"
+/>
+
 
     <div className="leading-tight select-none">
       <span
