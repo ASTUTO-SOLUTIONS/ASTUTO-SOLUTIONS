@@ -28,7 +28,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   const form = e.currentTarget;
 
   try {
-    const res = await fetch('/api/send-mail', {
+    const res = await fetch('/.netlify/functions/send-mail', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -78,26 +78,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     },
   ];
 
-  const offices = [
-    {
-      city: 'New York',
-      address: '123 Business Street, Suite 100',
-      phone: '(555) 123-4567',
-      image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400&h=300&fit=crop',
-    },
-    {
-      city: 'San Francisco',
-      address: '456 Tech Avenue, Floor 5',
-      phone: '(555) 234-5678',
-      image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=300&fit=crop',
-    },
-    {
-      city: 'London',
-      address: '789 Finance Road, Suite 200',
-      phone: '+44 20 1234 5678',
-      image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=300&fit=crop',
-    },
-  ];
+
 
   return (
     <main className="parallax-container">

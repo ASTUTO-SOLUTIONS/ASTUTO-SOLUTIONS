@@ -11,7 +11,7 @@ export function ContactSection() {
   const form = e.currentTarget;
 
   try {
-    const res = await fetch('/api/send-mail', {
+    const res = await fetch('/.netlify/functions/send-mail', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
