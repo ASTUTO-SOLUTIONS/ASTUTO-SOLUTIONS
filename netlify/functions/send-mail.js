@@ -27,7 +27,7 @@ exports.handler = async (event) => {
     }
 
     await resend.emails.send({
-      from: "Astuto Website <no-reply@astutosolution.com>",
+      from: "Astuto Website <no-reply@mail.astutosolution.com>",
       to: ["ask@astutosolution.com"],
       replyTo: email,
       subject: `[${formType.toUpperCase()}] New enquiry from ${name}`,
